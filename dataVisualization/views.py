@@ -126,4 +126,4 @@ def borrarSensor(request, id):
     sensor = Sensor.objects.get(pk=id)
     sensor.delete()
 
-    return redirect('list')
+    return redirect('listado')
