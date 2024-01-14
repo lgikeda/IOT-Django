@@ -1,0 +1,29 @@
+<!-- mostrar_controles.html -->
+
+{% extends 'layouts/layout.html' %}
+
+{% block title %} {{ title }} {% endblock %}
+
+{% block content %}
+  <h1 style="color: darkblue; font-size: 45px;">Controles</h1>
+  <hr>
+  <br/>
+  <ul>
+    {% for control in controles %}
+      <li>
+        <div>
+            <span style="color: gray; font-size: 30px;">{{ control.nombre }}</span> - {% if control.estado %}<span style="color: #FFC733; font-weight: bold; font-size: 20px;">Encendido</span>{% else %}<span style="color: red; font-weight: bold; font-size: 20px;">Apagado</span>{% endif %}
+        </div>
+        <form method="post" action="{% url 'cambiar_estado' control.id %}">
+          {% csrf_token %}
+          <input type="submit" value="Cambiar Estado">
+        </form>
+        <p>
+            <a href="{% url 'borrarControl' control.id %}" class="btn btn-delete">Eliminar Control</a>
+        </p>
+      </li>
+        <hr>
+      <br/>
+    {% endfor %}
+  </ul>
+{% endblock %}

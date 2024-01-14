@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <title>
+        {% block title %}
+            <!--titulo de cada pagina-->
+        {% endblock %}
+        | Luis Ikeda
+    </title>
+
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}" />
+</head>
+
+<body>
+
+    <!--Cabecera de la pagina-->
+    <header>
+        <div id="logotipo">
+            <!--logo Django-->
+            <img src="{% static 'images/logo.png' %}" />
+            <h1>Proyecto con Django</h1>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li>
+                <a href="{% url 'index' %}">Inicio</a>
+            </li>
+            <li>
+                <a href="{% url 'listado' %}">Sensores</a>
+            </li>
+            <li>
+                <a href="{% url 'controls' %}">Controles</a>
+            </li>
+            <li>
+                <a href="{% url 'crear_control' %}">Crear controles</a>
+            </li>
+            <li>
+                <a href="{% url 'visualization' %}">Gráficos</a>
+            </li>
+        </ul>
+    </nav>
+    <div class="barra">
+        <span class="esquina-izquierda"></span>
+        <span class="relleno-barra"></span>
+        <span class="esquina-derecha"></span>
+    </div>
+
+    <div id="content">
+        <div class="box">
+            {% block content %}
+            <!--Codigo que viene de template-->
+            <strong> Contenido del bloque original!!! </strong>
+            {% endblock %}
+        </div>
+    </div>
+
+    <footer>
+        Web &copy; Luis Ikeda - {% now "d/m/Y"%}
+    </footer>
+</body>
+
+</html>
