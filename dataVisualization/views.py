@@ -17,11 +17,14 @@ from django.dispatch import receiver
 # Create your views here.
 @receiver(post_save, sender=Medicion)
 def check_temperature_and_send_alert(sender, instance, **kwargs):
-    if instance.valor >= 40:
-        # Enviar alerta por correo electrónico
+    # Obtener el tipo de sensor desde el título (puedes ajustar esto según tus nombres de sensores)
+    tipo_sensor = instance.sensor.title.lower()
+
+    if instance.valor >= 40 and tipo_sensor.lower() == 'temperatura':
+        # Enviar alerta por correo electrónico solo si el tipo de sensor es 'Temperatura'
         send_mail(
             'Alerta de Temperatura',
-            'La temperatura ha alcanzado o superado los 50 grados.',
+            f'La temperatura ha alcanzado o superado los 40 grados. Valor alcanzado: {instance.valor}',
             'luisikeda.desarrollo@gmail.com',  # Cambia esto al remitente deseado
             ['luisikeda.desarrollo@gmail.com'],  # Cambia esto al destinatario deseado
             fail_silently=False,
