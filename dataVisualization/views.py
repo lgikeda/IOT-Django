@@ -23,7 +23,7 @@ def check_temperature_and_send_alert(sender, instance, **kwargs):
             'Alerta de Temperatura',
             'La temperatura ha alcanzado o superado los 50 grados.',
             'luisikeda.desarrollo@gmail.com',  # Cambia esto al remitente deseado
-            ['genesiscuevascoca@gmail.com'],  # Cambia esto al destinatario deseado
+            ['luisikeda.desarrollo@gmail.com'],  # Cambia esto al destinatario deseado
             fail_silently=False,
         )
 
