@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Control
 from .forms import ControlForm
+from django.http import JsonResponse
 
 # Create your views here.
 def crear_control(request):
@@ -35,3 +36,8 @@ def borrarControl(request, id):
     control.delete()
 
     return redirect('controls')
+
+def obtener_estado_control(request, control_nombre):
+    control = get_object_or_404(Control, nombre=control_nombre)
+    estado = control.estado
+    return JsonResponse({'nombre': control.nombre, 'estado': estado})
